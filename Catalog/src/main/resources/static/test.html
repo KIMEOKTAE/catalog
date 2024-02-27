@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Article</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+function abc(){
+	$.ajax({
+		type : 'POST',
+		url : '/hello',
+		dataType : 'json',
+		success : function (data) {
+			
+			console.log(data);
+			
+			}
+		});
+}
+</script>
+<body>
+
+</body>
+</html>

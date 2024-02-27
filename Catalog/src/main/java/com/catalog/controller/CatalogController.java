@@ -1,39 +1,51 @@
 package com.catalog.controller;
 
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.catalog.service.CatalogService;
 import com.catalog.vo.CatalogVO;
 
-@RestController
+@Controller
+@RequestMapping("/")
 public class CatalogController {
- 
+	
 	@Autowired
 	CatalogService catalogService;
-
-	@RequestMapping("/hello")
-	public ModelAndView getListBoard() {
-		CatalogVO param = new CatalogVO();
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("model", catalogService.testQuery(param));
+	
+	
+	
+	// DB연결 테스트
+	@GetMapping("/")
+	public ModelAndView home() {
+		ModelAndView mav = new ModelAndView("home");
+		
+		Map<String,Object> map = new HashMap<>();
+		
+		map.put("name", "김억태");
+		map.put("data", LocalDateTime.now());
+		
+		mav.addObject("data", map);
+		
 		return mav;
 	}
 	
-	@RequestMapping("/testPage")
-	public ModelAndView testPage(ModelAndView mav) {
+	// DB연결 테스트, jsonView 테스트
+	@ResponseBody
+	@RequestMapping("/hello.do")
+	public ModelAndView getListBoard() {
+		System.out.println("123123");
 		CatalogVO param = new CatalogVO();
-		mav.setViewName("test");		
-		List<CatalogVO> testModel = catalogService.testQuery(param);
-		mav.addObject("model",testModel);
-		System.out.println(testModel);
-		System.out.println(mav.getViewName());
+		ModelAndView mav = new ModelAndView("jsonView");
+		mav.addObject("model", catalogService.testQuery(param));
 		return mav;
 	}
 

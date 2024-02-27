@@ -5,17 +5,8 @@
     <title>Article</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script>
-$.ajax({
-	type : 'POST',
-	url : '/hello.do',
-	dataType : 'json',
-	success : function (data) {
-		console.log(data);
-	}
-});
-</script>
 <body>
-
+	<div th:text="${data.name}"></div>
+	<a href="/files/test.apk">>APK 파일 다운로드</a>
 </body>
 </html>

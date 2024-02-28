@@ -24,7 +24,7 @@ public class CatalogController {
 	// DB연결 테스트
 	@GetMapping("/")
 	public ModelAndView home() {
-		ModelAndView mav = new ModelAndView("home");
+		ModelAndView mav = new ModelAndView("catalog");
 		
 		Map<String,Object> map = new HashMap<>();
 		

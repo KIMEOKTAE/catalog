@@ -21,16 +21,13 @@ public class CatalogController {
 	@Autowired
 	CatalogService catalogService;
 	
-	
-	
 	// DB연결 테스트
 	@GetMapping("/")
 	public ModelAndView home() {
-		ModelAndView mav = new ModelAndView("home");
+		ModelAndView mav = new ModelAndView("catalog");
 		
 		Map<String,Object> map = new HashMap<>();
 		
-		map.put("name", "김억태");
 		map.put("data", LocalDateTime.now());
 		
 		mav.addObject("data", map);
@@ -42,7 +39,6 @@ public class CatalogController {
 	@ResponseBody
 	@RequestMapping("/hello.do")
 	public ModelAndView getListBoard() {
-		System.out.println("123123");
 		CatalogVO param = new CatalogVO();
 		ModelAndView mav = new ModelAndView("jsonView");
 		mav.addObject("model", catalogService.testQuery(param));
